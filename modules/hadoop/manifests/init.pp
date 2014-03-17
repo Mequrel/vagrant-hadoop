@@ -3,9 +3,9 @@
 
 class hadoop {
   $hadoop_home = "/opt/hadoop"
-  $hadoop_ver = "0.21.0"
+  $hadoop_ver = "1.0.4"
   $pig_home = "/opt/pig"
-  $pig_ver = "0.9.2"
+  $pig_ver = "0.12.0"
 
   exec { "download_hadoop":
     command => "wget -O /tmp/hadoop.tgz http://archive.apache.org/dist/hadoop/core/hadoop-${hadoop_ver}/hadoop-${hadoop_ver}.tar.gz",
@@ -15,7 +15,7 @@ class hadoop {
   }
 
   exec { "download_pig":
-    command => "wget -O /tmp/pig.tgz http://mirror.switch.ch/mirror/apache/dist/pig/pig-${pig_ver}/pig-${pig_ver}.tar.gz",
+    command => "wget -O /tmp/pig.tgz http://archive.apache.org/dist/pig/pig-${pig_ver}/pig-${pig_ver}.tar.gz",
     path => $path,
     unless => "ls /opt | grep pig-${pig_ver}",
     require => Exec["unpack_hadoop"]
